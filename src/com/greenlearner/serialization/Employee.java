@@ -1,6 +1,8 @@
 package com.greenlearner.serialization;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author - GreenLearner(https://www.youtube.com/c/greenlearner)
@@ -11,6 +13,24 @@ public class Employee implements Serializable {
     private String name;
     private String address;
     private transient String category;
+    private List<String> listOfTask;
+    private Integer[] scores;
+
+    public Integer[] getScores() {
+        return scores;
+    }
+
+    public void setScores(Integer[] scores) {
+        this.scores = scores;
+    }
+
+    public List<String> getListOfTask() {
+        return listOfTask;
+    }
+
+    public void setListOfTask(List<String> listOfTask) {
+        this.listOfTask = listOfTask;
+    }
 
     public static String getDepartment() {
         return department;
@@ -60,6 +80,8 @@ public class Employee implements Serializable {
                 ", address='" + address + '\'' +
                 ", category='" + category + '\'' +
                 ", department='" + department + '\'' +
+                ", listOfTask='" + listOfTask + '\'' +
+                ", scores='" + (Arrays.asList(scores)) + '\'' +
                 '}';
     }
 }

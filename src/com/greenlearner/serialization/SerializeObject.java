@@ -1,6 +1,8 @@
 package com.greenlearner.serialization;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author - GreenLearner(https://www.youtube.com/c/greenlearner)
@@ -13,14 +15,19 @@ public class SerializeObject {
         emp.setAddress("Noida");
         emp.setCategory("TEMP");
         emp.setDepartment("IT");
-
+        List<String> listOfTask = Arrays.asList(new String[]{"task1","task2"});
+        emp.setListOfTask(listOfTask);
+        Integer[] scores = {1,2,4,5};
+        emp.setScores(scores);
         System.out.println("Actual emp - " + emp);
 
-        File file = new File("arvind123.txt");
+        File file = new File("arvind1234.txt");
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         ObjectOutputStream oos = new ObjectOutputStream(fileOutputStream);
 
         //storing the object
         oos.writeObject(emp);
+        //Actual emp - Employee{id=101, name='Arvind', address='Noida', category='TEMP',
+        // department='IT', listOfTask='[task1, task2]', scores='[1, 2, 4, 5]'}
     }
 }
