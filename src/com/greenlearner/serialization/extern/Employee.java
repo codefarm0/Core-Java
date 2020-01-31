@@ -1,14 +1,13 @@
-package com.greenlearner.serialization;
+package com.greenlearner.serialization.extern;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author - GreenLearner(https://www.youtube.com/c/greenlearner)
  */
-public class Employee implements Serializable{
-    private static final long serialVersionUID = 4793970660026653096L;
+public class Employee implements Externalizable {
     private static String department;
     private int id;
     private String name;
@@ -16,14 +15,6 @@ public class Employee implements Serializable{
     private transient String category;
     private List<String> listOfTask;
     private Integer[] scores;
-    private String designation;
-
-    public Employee(String name) {
-        this.name = name;
-    }
-
-    public Employee() {
-    }
 
     public Integer[] getScores() {
         return scores;
@@ -90,7 +81,29 @@ public class Employee implements Serializable{
                 ", category='" + category + '\'' +
                 ", department='" + department + '\'' +
                 ", listOfTask='" + listOfTask + '\'' +
-                ", scores='" + (scores ==null ? null : (Arrays.asList(scores))) + '\'' +
+                ", scores='" + (scores == null ? null : (Arrays.asList(scores))) + '\'' +
                 '}';
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(name);
+        out.writeObject(address);
+        out.writeObject(category);
+        out.writeObject(listOfTask);
+        out.writeInt(id);
+        out.writeObject(scores);
+        System.out.println("writeExternal is called!!");
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        name = (String) in.readObject();
+        address= (String) in.readObject();
+        category= (String) in.readObject();
+        listOfTask= (List<String>) in.readObject();
+        id = in.readInt();
+        scores = (Integer[]) in.readObject();
+        System.out.println("readExternal is called");
     }
 }

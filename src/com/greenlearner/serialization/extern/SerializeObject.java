@@ -1,6 +1,9 @@
-package com.greenlearner.serialization;
+package com.greenlearner.serialization.extern;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,12 +24,14 @@ public class SerializeObject {
         emp.setScores(scores);
         System.out.println("Actual emp - " + emp);
 
-        File file = new File("arvind1234.txt");
+        File file = new File("extern.ser");
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         ObjectOutputStream oos = new ObjectOutputStream(fileOutputStream);
 
         //storing the object
         oos.writeObject(emp);
 
+        //Actual emp - Employee{id=101, name='Arvind', address='Noida', category='TEMP', department='IT', listOfTask='[task1, task2]', scores='[1, 2, 4, 5]'}
+        //writeExternal is called!!
     }
 }

@@ -1,5 +1,8 @@
-package com.greenlearner.serialization;
+package com.greenlearner.serialization.custom;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -7,8 +10,7 @@ import java.util.List;
 /**
  * @author - GreenLearner(https://www.youtube.com/c/greenlearner)
  */
-public class Employee implements Serializable{
-    private static final long serialVersionUID = 4793970660026653096L;
+public class Employee implements Serializable {
     private static String department;
     private int id;
     private String name;
@@ -16,14 +18,6 @@ public class Employee implements Serializable{
     private transient String category;
     private List<String> listOfTask;
     private Integer[] scores;
-    private String designation;
-
-    public Employee(String name) {
-        this.name = name;
-    }
-
-    public Employee() {
-    }
 
     public Integer[] getScores() {
         return scores;
@@ -90,7 +84,21 @@ public class Employee implements Serializable{
                 ", category='" + category + '\'' +
                 ", department='" + department + '\'' +
                 ", listOfTask='" + listOfTask + '\'' +
-                ", scores='" + (scores ==null ? null : (Arrays.asList(scores))) + '\'' +
+                ", scores='" + (Arrays.asList(scores)) + '\'' +
                 '}';
     }
+
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        System.out.println("custom serialization!!");
+        if(getAddress().equals("Noida")){
+            setAddress("Delhi, India");
+        }
+        oos.defaultWriteObject();
+    }
+
+    private void readObject(ObjectInputStream iis) throws IOException, ClassNotFoundException {
+        System.out.println("custom Deserialization!!");
+        iis.defaultReadObject();
+    }
+
 }

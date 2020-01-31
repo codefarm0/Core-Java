@@ -1,4 +1,4 @@
-package com.greenlearner.serialization;
+package com.greenlearner.serialization.extern.inherit;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,14 +10,16 @@ import java.io.ObjectInputStream;
  */
 public class DeserializeObject {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        //read the object
-        File file = new File("arvind1234.txt");
+
+        File file = new File("extern.ser");
         FileInputStream fis = new FileInputStream(file);
         ObjectInputStream ois = new ObjectInputStream(fis);
 
-
-        Employee employee = (Employee) ois.readObject();
+        //read the object
+        GovtEmployee employee = (GovtEmployee) ois.readObject();
         System.out.println("Deserialized emp - " + employee);
-        //Actual emp - Employee{id=101, name='Arvind', address='Noida', category='TEMP', department='IT', listOfTask='[task1, task2]', scores='[1, 2, 4, 5]'}
+
+        fis.close();
+        ois.close();
     }
 }

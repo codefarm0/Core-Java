@@ -1,6 +1,9 @@
-package com.greenlearner.serialization;
+package com.greenlearner.serialization.custom;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,5 +31,10 @@ public class SerializeObject {
         //storing the object
         oos.writeObject(emp);
 
+        //cleaning-up the streams
+        fileOutputStream.flush();
+        fileOutputStream.close();
+        oos.flush();
+        oos.close();
     }
 }

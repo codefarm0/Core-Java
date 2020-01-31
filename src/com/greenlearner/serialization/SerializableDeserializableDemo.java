@@ -7,7 +7,7 @@ import java.io.*;
  */
 public class SerializableDeserializableDemo {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Employee emp = new Employee();
+        Employee emp = new Employee("");
         emp.setId(101);
         emp.setName("Arvind");
         emp.setAddress("Noida");
